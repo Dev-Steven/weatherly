@@ -1,27 +1,48 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import openWeather from '../apis/openWeather';
+
 import Nav from './Nav';
 import Search from './Search';
 import CurrentWeather from './CurrentWeather';
-import axios from 'axios';
-import openWeather from '../apis/openWeather';
+import DailyForecast from './DailyForecast';
 
 import './App.css';
 
+const API_KEY = '297e2386527ec5c6a3b26f804d07563e';
 class App extends Component {
-	state = { city: null };
+	state = { currentWeather: null, dailyWeather: null };
 
-	searchTerm = async term => {
-		const city = await axios.get(
-			`${openWeather}/weather?q=${term}&APPID=297e2386527ec5c6a3b26f804d07563e`
+	getCurrentWeather = async searchedCity => {
+		const response = await openWeather.get(
+			`/weather?q=${searchedCity}&APPID=${API_KEY}`
 		);
-		console.log(city.data);
-		this.setState({ city: city.data });
+		console.log(response.data);
+		this.setState({ currentWeather: response.data });
+		this.getDailyWeather(response.data.coord.lat, response.data.coord.lon);
 	};
 
-	renderCard = () => {
-		if (this.state.city != null) {
-			return <CurrentWeather city={this.state.city} />;
+	getDailyWeather = async (lat, lon) => {
+		const response = await openWeather.get(
+			`/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly&appid=${API_KEY}`
+		);
+		console.log(response.data);
+		this.setState({ dailyWeather: response.data });
+	};
+
+	renderWeatherInfo = () => {
+		if (
+			this.state.currentWeather != null &&
+			this.state.dailyWeather != null
+		) {
+			return (
+				<div>
+					<CurrentWeather
+						currentWeather={this.state.currentWeather}
+					/>
+					<DailyForecast dailyWeather={this.state.dailyWeather} />
+				</div>
+			);
 		} else {
 			return <div></div>;
 		}
@@ -31,8 +52,8 @@ class App extends Component {
 		return (
 			<div className='main-container'>
 				<Nav />
-				<Search onSearch={this.searchTerm} />
-				{this.renderCard()}
+				<Search getCurrentWeather={this.getCurrentWeather} />
+				{this.renderWeatherInfo()}
 			</div>
 		);
 	}

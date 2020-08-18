@@ -1,8 +1,12 @@
 import React from 'react';
 import './CurrentWeather.css';
 
+export const convertKevlinToFarenheit = k => {
+	return Math.round((k - 273.15) * 1.8 + 32);
+};
+
 const CurrentWeather = ({
-	city: {
+	currentWeather: {
 		name,
 		main,
 		main: { feels_like, humidity, temp, temp_max, temp_min },
@@ -13,10 +17,6 @@ const CurrentWeather = ({
 		wind: { deg, speed },
 	},
 }) => {
-	const convertKevlinToFarenheit = k => {
-		return Math.round((k - 273.15) * 1.8 + 32);
-	};
-
 	const renderIcon = description => {
 		if (description === 'broken clouds') {
 			return (

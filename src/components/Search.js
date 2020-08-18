@@ -6,7 +6,7 @@ class Search extends Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		this.props.onSearch(this.state.city);
+		this.props.getCurrentWeather(this.state.city);
 	};
 
 	handleChange = event => {
