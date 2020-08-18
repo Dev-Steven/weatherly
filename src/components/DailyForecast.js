@@ -40,10 +40,7 @@ class DailyForecast extends Component {
 		} = this.props;
 
 		return (
-			<div>
-				<h1 className='text-white text-center'>
-					Weekly Weather Forecast:
-				</h1>
+			<div className='daily-content'>
 				<div className='day-forecast container'>
 					<div className='row'>
 						{remDays.map(day => (

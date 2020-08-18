@@ -1,5 +1,5 @@
 import React from 'react';
-import './CurrentWeather.css';
+import './CurrentWeather.scss';
 
 export const convertKevlinToFarenheit = k => {
 	return Math.round((k - 273.15) * 1.8 + 32);
@@ -32,36 +32,27 @@ const CurrentWeather = ({
 	};
 
 	return (
-		<div className='card-component'>
-			<div
-				className='card text-white bg-dark mb-3 card-opacity'
-				style={{ maxWidth: '18rem' }}
-			>
-				<div className='card-header text-center'>
+		<div className='text-center'>
+			<div className='day-card'>
+				<h4 className='text-center'>
 					{name}, {sys.country}
-				</div>
-				<div className='card-body'>
-					<div className='container'>
-						<div className='row'>
-							<div className='col'>
-								{renderIcon(weather[0].description)}
-							</div>
-							{/* <div className='w-100'></div> */}
-							<h3
-								className='col card-title text-center'
-								// style={{ padding: '70px 0' }}
-							>
-								{convertKevlinToFarenheit(main.temp)}
-								<span>&#176;</span>F
-							</h3>
+				</h4>
+				<div className='container'>
+					<div className='row'>
+						<div className='col'>
+							{renderIcon(weather[0].description)}
 						</div>
+						<h3 className='col text-center'>
+							{convertKevlinToFarenheit(main.temp)}
+							<span>&#176;</span>F
+						</h3>
 					</div>
-					<p className='card-text text-center'>
-						{weather[0].description}
-						<br />
-						Wind: {wind.speed}mph
-					</p>
 				</div>
+				<p className='text-center'>
+					{weather[0].description}
+					<br />
+					Wind: {wind.speed}mph
+				</p>
 			</div>
 		</div>
 	);

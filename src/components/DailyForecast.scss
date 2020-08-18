@@ -1,10 +1,14 @@
-@mixin card-style() {
+@mixin card-style($background-color: rgba(45, 52, 54, 0.4), $width: 150px) {
 	padding-top: 20px;
-	background-color: rgba(45, 52, 54, 0.4);
+	background-color: $background-color;
 	margin-left: 10px;
 	border-radius: 5px;
-	width: 150px;
+	width: $width;
 	text-align: center;
+}
+
+.daily-content {
+	margin-top: 50px;
 }
 
 .day-forecast {
