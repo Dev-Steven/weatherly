@@ -3,31 +3,10 @@ import { convertKevlinToFarenheit } from './CurrentWeather';
 import './DailyForecast.scss';
 
 class DailyForecast extends Component {
-	unixToDayConverter = UNIX_timestamp => {
-		let day;
-		switch (new Date(UNIX_timestamp * 1000).getDay()) {
-			case 0:
-				day = 'Sunday';
-				break;
-			case 1:
-				day = 'Monday';
-				break;
-			case 2:
-				day = 'Tuesday';
-				break;
-			case 3:
-				day = 'Wednesday';
-				break;
-			case 4:
-				day = 'Thursday';
-				break;
-			case 5:
-				day = 'Friday';
-				break;
-			case 6:
-				day = 'Saturday';
-		}
-		return day;
+	getWeekday = unixCode => {
+		const dateObj = new Date(unixCode * 1000);
+		const weekDay = dateObj.toLocaleString('en-US', { weekday: 'long' });
+		return weekDay;
 	};
 
 	render() {
@@ -45,7 +24,7 @@ class DailyForecast extends Component {
 					<div className='row'>
 						{remDays.map(day => (
 							<div className='day-card col-sm' key={day.dt}>
-								{this.unixToDayConverter(day.dt)}
+								{this.getWeekday(day.dt)}
 								<img
 									src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
 									alt={day.weather[0].description}

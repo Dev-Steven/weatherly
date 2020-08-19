@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './Nav.scss';
 
 class Nav extends Component {
 	render() {
 		return (
-			<div>
+			<div className='nav-container'>
 				<ul className='nav justify-content-start'>
 					<li className='nav-item'>
 						<a className='navbar-brand text-white' href='/'>

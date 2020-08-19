@@ -7,7 +7,7 @@ import Search from './Search';
 import CurrentWeather from './CurrentWeather';
 import DailyForecast from './DailyForecast';
 
-import './App.css';
+import './App.scss';
 
 const API_KEY = '297e2386527ec5c6a3b26f804d07563e';
 class App extends Component {
@@ -44,7 +44,13 @@ class App extends Component {
 				</div>
 			);
 		} else {
-			return <div></div>;
+			return (
+				<div className='welcome'>
+					<h4 className='text-center text-white'>
+						Welcome to Weatherly, your most accurate weather site.
+					</h4>
+				</div>
+			);
 		}
 	};
 
