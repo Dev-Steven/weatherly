@@ -6,8 +6,8 @@ class Nav extends Component {
 			<div>
 				<ul className='nav justify-content-start'>
 					<li className='nav-item'>
-						<a className='nav-link text-white active' href='/'>
-							Weatherly
+						<a className='navbar-brand text-white' href='/'>
+							<h3>Weatherly</h3>
 						</a>
 					</li>
 				</ul>

@@ -1,7 +1,12 @@
 @import 'DailyForecast';
 
 .day-card {
+	margin-top: 35px;
 	color: white;
 	display: inline-block;
 	@include card-style(rgba(45, 52, 54, 0.4), 350px);
+}
+
+.degrees {
+	padding-top: 35px;
 }

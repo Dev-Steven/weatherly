@@ -46,6 +46,10 @@ class DailyForecast extends Component {
 						{remDays.map(day => (
 							<div className='day-card col-sm' key={day.dt}>
 								{this.unixToDayConverter(day.dt)}
+								<img
+									src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+									alt={day.weather[0].description}
+								/>
 								<p>
 									{convertKevlinToFarenheit(day.temp.day)}
 									<span>&#176;</span>F

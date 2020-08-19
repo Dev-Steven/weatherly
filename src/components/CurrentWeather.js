@@ -17,18 +17,14 @@ const CurrentWeather = ({
 		wind: { deg, speed },
 	},
 }) => {
-	const renderIcon = description => {
-		if (description === 'broken clouds') {
-			return (
-				<img
-					src='https://www.weatherbit.io/static/img/icons/c04d.png'
-					alt='broken clouds'
-					style={{ width: '85px', height: '85px' }}
-				/>
-			);
-		} else {
-			return <p>could not find image</p>;
-		}
+	const renderIcon = icon => {
+		return (
+			<img
+				src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+				alt='broken clouds'
+				style={{ width: '85px', height: '85px' }}
+			/>
+		);
 	};
 
 	return (
@@ -40,12 +36,16 @@ const CurrentWeather = ({
 				<div className='container'>
 					<div className='row'>
 						<div className='col'>
-							{renderIcon(weather[0].description)}
+							<img
+								src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
+								alt='broken clouds'
+								style={{ width: '120px', height: '120px' }}
+							/>
 						</div>
-						<h3 className='col text-center'>
+						<h2 className='col text-center degrees'>
 							{convertKevlinToFarenheit(main.temp)}
 							<span>&#176;</span>F
-						</h3>
+						</h2>
 					</div>
 				</div>
 				<p className='text-center'>
